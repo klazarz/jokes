@@ -1,5 +1,7 @@
 # One Pun at a time
- 
+
+## Display a random dad joke 
+
 A fun Python project I did to learn about different things.
 
 Version 1:
