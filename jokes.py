@@ -47,6 +47,12 @@ def get_joke():
     tree = html.fromstring(page.content)
     elements6 = tree.xpath('//*[@id="a73891843"]/div/p[position()>=2]/text()')
 
+    # Jokes list 7
+    URL = 'https://www.momjunction.com/articles/dad-jokes_00755531/'
+    page = requests.get(URL, headers=HEADERS)
+    tree = html.fromstring(page.content)
+    elements6 = tree.xpath('//*[@id="dad-jokes"]/div/p[position()>=5]/text()')
+
     # Merging & Messaging
     allelements = elements
     allelements.extend(elements2)
