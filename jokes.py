@@ -73,7 +73,7 @@ def get_joke():
 
     return element
 
-get_joke()
+#get_joke()
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
