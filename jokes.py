@@ -41,6 +41,11 @@ def get_joke():
     tree = html.fromstring(page.content)
     elements5 = tree.xpath('//*[@id="post-49508"]/div/div/article/div[2]/ol[position()>=1]/li[position()>=1]/text()')
 
+    # Jokes list 6
+    URL = 'https://www.thepresentfinder.co.uk/blog/60-bad-dad-jokes_73891843.htm'
+    page = requests.get(URL, headers=HEADERS)
+    tree = html.fromstring(page.content)
+    elements6 = tree.xpath('//*[@id="a73891843"]/div/p[position()>=2]/text()')
 
     # Merging & Messaging
     allelements = elements
@@ -48,8 +53,9 @@ def get_joke():
     allelements.extend(elements3)
     allelements.extend(elements4)
     allelements.extend(elements5)
+    allelements.extend(elements6)
 
-    print(len(allelements))
+    #print(len(allelements))
 
     #Remove dead bodies
     for e in allelements:
@@ -73,4 +79,5 @@ def dailyjoke():
 
 
 if __name__ == '__main__':
+    #get_joke()
     app.run(host='0.0.0.0')
