@@ -2,7 +2,7 @@ from lxml import html
 import requests
 import random
 from flask import Flask, render_template
-import pandas as pd
+import re
 
 def get_joke():
     HEADERS = ({'User-Agent':
@@ -61,15 +61,24 @@ def get_joke():
     allelements.extend(elements5)
     allelements.extend(elements6)
 
-    #print(len(allelements))
 
     #Remove dead bodies
     for e in allelements:
-        if len(e) < 3:
+        if len(e) < 13:
             allelements.remove(e)
 
+    #print(len(allelements))
 
     element = random.choice(allelements)
+
+    #print (element)
+
+    #Remove leading digits
+    element = re.sub('^\d+', '', element)
+    #Remove .<space> after leading digits have been removed
+    element = re.sub('^\. ', '', element)
+
+    #print (element)
 
     return element
 
