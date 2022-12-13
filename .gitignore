@@ -1,4 +1,6 @@
 bin/
+wallet_jokes/
+jokes-db.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
