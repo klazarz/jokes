@@ -1,6 +1,7 @@
 bin/
 wallet_jokes/
 jokes-db.py
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
