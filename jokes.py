@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request
-from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
 import requests
 import random
 import json
