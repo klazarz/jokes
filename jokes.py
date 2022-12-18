@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
 import requests
 import random
 import json
@@ -9,7 +11,12 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    id = str(random.randint(1, 463))
+    # This is a rest call to get the id for the last joke
+    rid = requests.get('https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/max_id/')
+    maxid = rid.json()
+    maxxid = (maxid['items'][0]['max_id']) #here i get the last ID
+
+    id = str(random.randint(1, maxxid))
     r = requests.get(f'https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/jokes/{id}',id)
     jr = r.json()
 
@@ -57,6 +64,28 @@ def offset(offset):
 
     return render_template('all.html', html_page_text = jr, nextoffset=nextoffset, prevoffset=prevoffset)
 
+@app.route('/addjoke/', methods=['GET','POST'])
+def addjoke():
+    if request.method == 'POST':
+        # This is a rest call to get the id for the last joke
+        rid = requests.get('https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/max_id/')
+        maxid = rid.json()
+        maxxid = (maxid['items'][0]['max_id']) + 1 #here i get the last ID
+        baseurl="https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/jokes/"
+
+        if request.form is not None:
+            joke = request.form.get('content')
+            data = {
+                "id": maxxid,
+                 "joke": joke
+                    }
+            r = requests.post(url=baseurl, data=data)
+            # print(r)
+            # print(r.text)
+        else:
+            pass
+
+    return render_template('addjoke.html')
 
 if __name__ == '__main__':
    app.run(debug = True)
