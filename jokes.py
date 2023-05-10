@@ -22,6 +22,13 @@ def home():
 
 @app.route('/onepun/<int:onepun>', methods=['GET'])
 def onepun(onepun):
+     # This is a rest call to get the id for the last joke
+    rid = requests.get('https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/max_id/')
+    maxid = rid.json()
+    maxxid = (maxid['items'][0]['max_id']) #here i get the last ID
+
+    if onepun>maxxid:
+        onepun=maxxid
 
     id = str(onepun)
     r = requests.get(f'https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/jokes/{id}',id)
