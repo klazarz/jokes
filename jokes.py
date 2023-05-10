@@ -20,6 +20,15 @@ def home():
 
     return render_template('index.html', joke = jr['joke'])
 
+@app.route('/onepun/<int:onepun>', methods=['GET'])
+def onepun():
+
+    id = str(onepun)
+    r = requests.get(f'https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/jokes/{id}',id)
+    jr = r.json()
+
+    return render_template('index.html', joke = jr['joke'])
+
 @app.route('/all', methods=['GET'])
 def all():
     baseurl = 'https://g7306646445d18e-jokes.adb.eu-amsterdam-1.oraclecloudapps.com/ords/jokes/jokes/'
