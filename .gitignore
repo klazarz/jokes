@@ -162,3 +162,11 @@ bin/Activate.ps1
 bin/pip
 bin/pip3
 bin/pip3.11
+bin/activate
+bin/activate
+bin/activate.csh
+bin/activate.fish
+bin/Activate.ps1
+bin/pip
+bin/pip3
+bin/pip3.11

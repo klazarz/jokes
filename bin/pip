@@ -1,4 +1,4 @@
-#!/Users/kevin/Documents/jokes/bin/python3.11
+#!/Users/klazarz/Documents/GitHub/jokes/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys
